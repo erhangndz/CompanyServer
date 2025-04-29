@@ -88,6 +88,12 @@ namespace Company.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(ProductDto productDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
             var product = new Product()
             {
                 ProductName = productDto.ProductName,
